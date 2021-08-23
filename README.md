@@ -1,6 +1,6 @@
-# vue-kstrack
+# vue-logger-directive
 
-该插件封装了`track`指令，实现了声明式埋点方案，便于解耦数据埋点和业务逻辑。
+该插件封装了`logger`指令，实现了声明式埋点方案，便于解耦数据埋点和业务逻辑。
 
 为了使该指令具有普适性，该插件只实现了控制埋点执行时机，具体的埋点逻辑需要作为参数传给该插件
 
@@ -9,17 +9,17 @@
 **1. 安装**
 
 ```
-npm install --save @ad/vue-track
+npm install --save vue-logger-directive
 ```
 
 **2. 在入口 js 中引入**
 
 ```
 import Vue from 'vue';
-import track from '@ad/vue-track'
+import logger from 'vue-logger-directive'
 // 需要业务方提供三个函数，分别用于PV统计、点击统计、展示统计
 import { logPV, logClick, logShow } from './logHandler';
-Vue.use(track, { logPV, logClick, logShow });
+Vue.use(logger, { logPV, logClick, logShow });
 
 ```
 
@@ -44,7 +44,7 @@ export function logPV(params: {
 
 // 组件使用时
 <div class="app"
-    v-track:pv="{page: "app", type: 1}">
+    v-logger:pv="{page: "app", type: 1}">
 </div>
 
 ```
@@ -62,14 +62,14 @@ export async function logClick(params: {
 }
 
 // 组件使用时
-<div class="card" v-track:click="{page: 'app', type: 1, action: 'join-btn'}"></div>
+<div class="card" v-logger:click="{page: 'app', type: 1, action: 'join-btn'}"></div>
 ```
 
 **元素展示统计：**
 
 ```
 // 业务中定义logShow函数
-export async function logShow(trackParams: {
+export async function logShow(params: {
     page: string;
     type: number;
     action: string;
@@ -78,8 +78,8 @@ export async function logShow(trackParams: {
 }
 
 // 组件使用时
-<div class="card" v-track:show="{page: 'app', type: 1, action: 'main-card'}"></div>
+<div class="card" v-logger:show="{page: 'app', type: 1, action: 'main-card'}"></div>
 
 // 支持元素展示只执行一次
-<div class="card" v-track:show.once="{page: 'app', type: 1, action: 'main-card'}"></div>
+<div class="card" v-logger:show.once="{page: 'app', type: 1, action: 'main-card'}"></div>
 ```

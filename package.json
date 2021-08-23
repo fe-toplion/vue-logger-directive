@@ -1,15 +1,15 @@
 {
-    "name": "vue-track",
+    "name": "vue-logger-directive",
     "version": "0.1.0",
     "private": false,
     "author": "zhaowenlong",
     "scripts": {
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build",
-        "lib": "vue-cli-service build --target lib --name vue-track --dest dist src/index.ts",
+        "lib": "vue-cli-service build --target lib --name vue-logger-directive --dest dist src/index.ts",
         "lint": "vue-cli-service lint"
     },
-    "main": "dist/vue-kstrack.umd.min.js",
+    "main": "dist/vue-logger-directive.umd.min.js",
     "types": "dist/index.d.ts",
     "files": [
         "dist"
